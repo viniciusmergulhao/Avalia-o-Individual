@@ -1,7 +1,11 @@
 from django.urls import path
-from .views import IndexView
+from . import views
 
+
+app_name = 'base'
 urlpatterns = [
-    path('', IndexView.as_view(), name='index'),
-    path('/teste', IndexView.as_view())
+    path('', views.index, name='index'),
+    path('<int:question_id>/', views.detail, name='detail'),
+    path('<int:question_id>/results/', views.results, name='results'),
+    path('<int:question_id>/vote/', views.vote, name='vote'),
 ]
